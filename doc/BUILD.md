@@ -11,13 +11,13 @@ cd plato
 
 #### Preliminary
 
-Install the appropriate [compiler toolchain](https://drive.google.com/drive/folders/1YT6x2X070-cg_E8iWvNUUrWg5-t_YcV0) (the binaries of the `bin` directory need to be in your path).
+Install the appropriate [compiler toolchain](https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/arm-linux-gnueabihf/) (the binaries of the `bin` directory need to be in your path).
 
 Install the required dependencies: `wget`, `curl`, `git`, `pkg-config`, `unzip`, `jq`, `patchelf`.
 
-Install *rustup*:
+Install *[rustup](https://www.rust-lang.org/tools/install)*:
 ```sh
-curl https://sh.rustup.rs -sSf | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 Install the appropriate target:
@@ -39,7 +39,18 @@ rustup target add arm-unknown-linux-gnueabihf
 
 ## Developer Tools
 
-Install the required dependencies: *MuPDF 1.23.11*, *DjVuLibre*, *FreeType*, *HarfBuzz*.
+Install the required dependencies: *DjVuLibre*, *FreeType*, *HarfBuzz*.
+
+```
+djvulibre-devel freetype-devel harfbuzz-devel gumbo-parser-devel openjpeg2-devel jbig2dec-devel
+```
+
+MuPDF 1.23.11 needs to be exact version (build from source)
+
+```
+make HAVE_X11=no HAVE_GLUT=no shared
+cp thirdparty/mupdf/build/shared-release/libmupdf.so target/debug/
+```
 
 ### Emulator
 

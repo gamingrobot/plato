@@ -24,7 +24,8 @@ fn main() {
             _ => panic!("Unsupported platform: {}.", target_os),
         }
 
-        println!("cargo:rustc-link-lib=mupdf-third");
+        println!("cargo:rustc-link-search=thirdparty/mupdf/build/shared-release");
+        println!("cargo:rustc-link-lib=mupdf");
     }
 
     println!("cargo:rustc-link-lib=z");
